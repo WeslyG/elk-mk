@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
+            </Pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="elasticAppender" class="ru.gnkoshelev.elastic.logger.logback.LogbackElasticAppender">
+        <Configuration class="ru.gnkoshelev.elastic.logger.logback.LogbackElasticConfiguration">
+            <shutdownTimeoutMs>5000</shutdownTimeoutMs>
+            <batchSize>10</batchSize>
+            <periodMs>2000</periodMs>
+            <capacity>1000000</capacity>
+            <threadCount>1</threadCount>
+            <retryCount>1</retryCount>
+            <indexPattern>logback-structure-{ ENTER_YOUR_NAME }</indexPattern>
+            <url>http://46.163.163.75:9200/</url>
+            <apiKey>ELK applicationKeyHere</apiKey>
+        </Configuration>
+    </appender>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="elasticAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</configuration>

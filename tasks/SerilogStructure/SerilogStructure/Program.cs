@@ -41,46 +41,46 @@ namespace SerilogHelloWorld
             Log.CloseAndFlush();
         }
 
-        //static string GetRandomIpAddress()
-        //{
-        //    var random = new Random(DateTime.Now.Millisecond);
-        //    return $"{random.Next(1, 255)}.{random.Next(0, 255)}.{random.Next(0, 255)}.{random.Next(0, 255)}";
-        //}
+        static string GetRandomIpAddress()
+        {
+           var random = new Random(DateTime.Now.Millisecond);
+           return $"{random.Next(1, 255)}.{random.Next(0, 255)}.{random.Next(0, 255)}.{random.Next(0, 255)}";
+        }
 
-        //static string GetRandomePlatforms()
-        //{
-        //    var platforms = new string[] {"Windows 10", "Windows 7", "Windows Vista", "Windows XP", "Android", "MacOS" };
-        //    var rnd = new Random(DateTime.Now.Millisecond);
-        //    int t = rnd.Next(0, platforms.Length);
-        //    return platforms[t];
-        //}
+        static string GetRandomePlatforms()
+        {
+           var platforms = new string[] {"Windows 10", "Windows 7", "Windows Vista", "Windows XP", "Android", "MacOS" };
+           var rnd = new Random(DateTime.Now.Millisecond);
+           int t = rnd.Next(0, platforms.Length);
+           return platforms[t];
+        }
 
-        //static void WriteLogToElastic(string logLevel, Tuple<int, int> statusCodeRange, int messageCount)
-        //{
-        //    for (var i = 0; i < messageCount; i++)
-        //    {
-        //        var random = new Random(DateTime.Now.Millisecond);
-        //        int statusCode = random.Next(statusCodeRange.Item1, statusCodeRange.Item2);
-        //        int time = random.Next(1, 250);
+        static void WriteLogToElastic(string logLevel, Tuple<int, int> statusCodeRange, int messageCount)
+        {
+           for (var i = 0; i < messageCount; i++)
+           {
+               var random = new Random(DateTime.Now.Millisecond);
+               int statusCode = random.Next(statusCodeRange.Item1, statusCodeRange.Item2);
+               int time = random.Next(1, 250);
 
-        //        string ip = GetRandomIpAddress();
-        //        string platforms = GetRandomePlatforms();
+               string ip = GetRandomIpAddress();
+               string platforms = GetRandomePlatforms();
 
-        //        System.Threading.Tasks.Task.Delay(20).GetAwaiter().GetResult();
+               System.Threading.Tasks.Task.Delay(20).GetAwaiter().GetResult();
 
-        //        switch (logLevel)
-        //        {
-        //            case "Error":
-        //                Log.Error("Server send status {StatusCode} for {time} ms from ip {ip} and {Platforms}", statusCode, time, ip, platforms);
-        //                break;
-        //            case "Information":
-        //                Log.Information("Server send status {StatusCode} for {time} ms from ip {ip} and {Platforms}", statusCode, time, ip, platforms);
-        //                break;
-        //            case "Warning":
-        //                Log.Warning("Server send status {StatusCode} for {time} ms from ip {ip} and {Platforms}", statusCode, time, ip, platforms);
-        //                break;
-        //        }
-        //    }
-        //}
+               switch (logLevel)
+               {
+                   case "Error":
+                       Log.Error("Server send status {StatusCode} for {time} ms from ip {ip} and {Platforms}", statusCode, time, ip, platforms);
+                       break;
+                   case "Information":
+                       Log.Information("Server send status {StatusCode} for {time} ms from ip {ip} and {Platforms}", statusCode, time, ip, platforms);
+                       break;
+                   case "Warning":
+                       Log.Warning("Server send status {StatusCode} for {time} ms from ip {ip} and {Platforms}", statusCode, time, ip, platforms);
+                       break;
+               }
+           }
+        }
     }
 }
